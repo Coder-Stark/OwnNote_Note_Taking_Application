@@ -1,13 +1,21 @@
 import React, { useContext, useEffect,useState,useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import noteContext from "../context/notes/noteContext";
 import AddNote from "./AddNote";
 import NoteItem from "./NoteItem";
 
-const Notes = () => {
+const Notes = (props) => {
   const context = useContext(noteContext);
+  const navigate = useNavigate();
   const { notes, getNotes, editNote } = context;
   useEffect(() => {
-    getNotes();
+
+    if(localStorage.getItem('token')){
+      getNotes()
+    }
+    else{
+      navigate("/login");
+    }
     // eslint-disable-next-line
   }, []);
 
@@ -18,13 +26,12 @@ const Notes = () => {
   const updateNote = (currentNote) => {
     ref.current.click();
     setNote({id: currentNote._id, etitle:currentNote.title, edescription:currentNote.description, etag:currentNote.tag})
-    
   };
-
 
   const handleClick = (e)=>{
     editNote(note.id, note.etitle, note.edescription, note.etag)
     refClose.current.click();
+    props.showAlert("Updated Successfully", "success")
   }
   const onchange =(e)=>{
     setNote({...note,[e.target.name]:e.target.value});
@@ -32,7 +39,7 @@ const Notes = () => {
 
   return (
     <>
-      <AddNote />
+      <AddNote  showAlert={props.showAlert}/>
       <button type="button" className="btn btn-primary d-none" ref = {ref} data-bs-toggle="modal" data-bs-target="#exampleModal">Launch demo modal</button>
       {/* <!-- Modal --> */}
       <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -74,7 +81,7 @@ e            </div>
         </div>
         {notes.map((note) => {
           return (
-            <NoteItem key={note._id} updateNote={updateNote} note={note} />
+            <NoteItem key={note._id} updateNote={updateNote} showAlert={props.showAlert} note={note} />
           );
         })}
       </div>
