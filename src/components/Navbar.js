@@ -17,7 +17,7 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/">iNoteBook</Link>
+        <Link className="navbar-brand" to="/">OwnNote</Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -32,9 +32,9 @@ const Navbar = () => {
           </ul>
 
           {!localStorage.getItem('token')?<form className="d-flex">
-          <Link className="btn btn-primary mx-2" to="/login" role="button">LogIn</Link>
-          <Link className="btn btn-primary mx-2" to="/signup" role="button">SignUp</Link>
-          </form>:<button onClick={handleLogout} className="btn btn-primary">Logout</button>}
+          <Link className="btn btn-success mx-2" to="/login" role="button">LogIn</Link>
+          <Link className="btn btn-info mx-2" to="/signup" role="button">SignUp</Link>
+          </form>:<button onClick={handleLogout} className="btn btn-secondary">Logout</button>}
         </div>
       </div>
     </nav>
