@@ -12,7 +12,7 @@ const Navbar = () => {
   }
   let location = useLocation();
   useEffect(() => {
-    console.log(location.pathname);
+    // console.log(location.pathname);                          //for terminal
   }, [location]);
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
