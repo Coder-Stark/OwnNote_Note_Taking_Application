@@ -2,8 +2,6 @@ import noteContext from "./noteContext";
 import { useState } from "react";
 
 const NoteState = (props) => {
-  // const host = "https://ownnote.onrender.com";
-  // const host = "http://localhost:5000";
   const host = `${process.env.REACT_APP_SERVER_URL}`;
 
   const notesInitial = []
@@ -20,7 +18,6 @@ const NoteState = (props) => {
       },
     });
     const json = await response.json();
-    // console.log(json)                                                 //terminal
     setNotes(json);
   };
   
@@ -50,8 +47,6 @@ const NoteState = (props) => {
       },
     });
     response.json();
-    // const json = response.json();
-    // console.log(json);                                                           //terminal
 
     //Logic to delete the client's notes
     const newNote = notes.filter((note) => {
@@ -73,8 +68,6 @@ const NoteState = (props) => {
       body: JSON.stringify({title, description, tag}),
     });
     await response.json();
-    // const json = await response.json();
-    // console.log(json);
 
     let newNotes = JSON.parse(JSON.stringify(notes))
     //Logic to edit the client's notes
