@@ -22,8 +22,8 @@ Follow these steps to set up and run the project locally:
 1. Navigate to the root directory where the `backend` and `frontend` folders are located.
 2. Create a `.env` file in the backend directory (`backend/.env`) and add the following environment variables:
    ```env
-   DB_URI=<data base link>
-   SESSION_SECRET=<secretkey>
+   MONGO=<secretkey>
+   JWT_SECRET=<secretkey>
    ```
 3. Open your terminal and navigate to the backend folder:
    ```bash
